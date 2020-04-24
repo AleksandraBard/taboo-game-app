@@ -1,13 +1,48 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
+
+import HomeScreen from './screens/HomeScreen'
+import CardScreen from './screens/CardScreen'
+import PlayersScreen from './screens/PlayersScreen'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <AppContainer />
   );
 }
+
+const StackNavigator = createStackNavigator({
+  HomeScreen: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: false,
+      headerBackTitle: false
+    }
+  } ,
+  PlayersScreen: {
+    screen: PlayersScreen,
+    navigationOptions: {
+      header: false,
+      headerBackTitle: false
+    }
+  } ,
+  CardScreen: {
+    screen: CardScreen,
+    navigationOptions: {
+      header: false,
+      headerBackTitle: false
+    }
+  } 
+})
+
+const AppSwitchNavigator = createSwitchNavigator({
+  StackNavigator
+})
+
+
+const AppContainer = createAppContainer(AppSwitchNavigator)
 
 const styles = StyleSheet.create({
   container: {
